@@ -1,0 +1,5 @@
+---
+squid_packages:
+  - squid3
+squid_service: squid3
+squid_config_dir: /etc/squid3

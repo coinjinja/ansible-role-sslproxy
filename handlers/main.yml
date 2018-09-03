@@ -1,0 +1,6 @@
+---
+- name: restart squid
+  service: name={{ squid_service }} state=restarted
+
+- name: restart nghttpx
+  service: name=nghttpx state=restarted

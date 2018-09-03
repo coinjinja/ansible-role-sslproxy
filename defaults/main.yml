@@ -1,0 +1,3 @@
+nghttpx_certs_path: "/etc/ssl/{{ nghttpx_certs_common_name }}"
+nghttpx_certificate_path: "{{ nghttpx_certs_path }}/{{ nghttpx_certs_common_name }}.crt"
+nghttpx_private_key_path:  "{{ nghttpx_certs_path }}/{{ nghttpx_certs_common_name }}.key"

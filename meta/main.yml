@@ -1,0 +1,16 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: humiaozuzu
+  description: SSL Proxy Access Server (Alternative for OpenVPN)
+  company: "Coinjinja"
+  license: "license (BSD, MIT)"
+  min_ansible_version: 1.8
+  platforms:
+    - name: Ubuntu
+      versions:
+      - trusty
+      - xenial
+  galaxy_tags:
+    - openvpn
