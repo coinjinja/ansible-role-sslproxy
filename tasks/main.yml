@@ -37,12 +37,12 @@
   notify: restart nghttpx
 
 - name: upload priviate key as data
-  copy: content={{ nghttpx_local_private_key_data.content }} dest={{ nghttpx_private_key_path }} owner=root group=root mode=0644
+  copy: content={{ nghttpx_local_private_key_data }} dest={{ nghttpx_private_key_path }} owner=root group=root mode=0644
   when: nghttpx_local_private_key_data is defined
   notify: restart nghttpx
 
 - name: upload cert as file
-  copy: content={{ nghttpx_local_certificate_data.content }} dest={{ nghttpx_certificate_path }} owner=root group=root mode=0644
+  copy: content={{ nghttpx_local_certificate_data }} dest={{ nghttpx_certificate_path }} owner=root group=root mode=0644
   when: nghttpx_local_certificate_data is defined
   notify: restart nghttpx
 
