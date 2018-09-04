@@ -26,11 +26,24 @@
 - name: Ensures cert dir exists
   file: path={{ nghttpx_certs_path }} state=directory owner=root group=root mode=0755
 
-- name: upload priviate key
+- name: upload priviate key as file
   copy: src={{ nghttpx_local_private_key_path }} dest={{ nghttpx_private_key_path }} owner=root group=root mode=0644
+  when: nghttpx_local_private_key_path is defined
+  notify: restart nghttpx
 
-- name: upload cert
+- name: upload cert as file
   copy: src={{ nghttpx_local_certificate_path }} dest={{ nghttpx_certificate_path }} owner=root group=root mode=0644
+  when: nghttpx_local_certificate_path is defined
+  notify: restart nghttpx
+
+- name: upload priviate key as data
+  copy: content={{ nghttpx_local_private_key_data.content }} dest={{ nghttpx_private_key_path }} owner=root group=root mode=0644
+  when: nghttpx_local_private_key_data is defined
+  notify: restart nghttpx
+
+- name: upload cert as file
+  copy: content={{ nghttpx_local_certificate_data.content }} dest={{ nghttpx_certificate_path }} owner=root group=root mode=0644
+  when: nghttpx_local_certificate_data is defined
   notify: restart nghttpx
 
 - name: copy nghttpx config
