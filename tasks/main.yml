@@ -3,8 +3,9 @@
   include_vars: "{{ ansible_distribution_release }}.yml"
 
 - name: install squid
-  apt: pkg="{{ item }}" state=present
-  with_items: "{{ squid_packages }}"
+  apt:
+    pkg: "{{ squid_packages }}"
+    state: present
 
 - name: copy app config
   template: src=squid.conf.j2 dest={{ squid_config_dir }}/squid.conf owner=root group=root mode=0644
@@ -19,9 +20,7 @@
   apt_repository: repo='ppa:ondrej/apache2' state=present update_cache=yes
 
 - name: install nghttpx
-  apt: pkg='{{ item }}' state=present update_cache=yes cache_valid_time=86400
-  with_items:
-    - nghttp2-proxy
+  apt: pkg=nghttp2-proxy state=present update_cache=yes cache_valid_time=86400
 
 - name: ensure nghttpx log path exists
   file: path=/var/log/nghttpx state=directory owner=root group=root mode=0755
